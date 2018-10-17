@@ -1,0 +1,8 @@
+Name,Total time,Create matrix time,Synthesis time,Nonconflicting check time,Clustering time,Number of supervisors,Total states
+03_central_lock_3doors,10886,10,5963,4851,15,2108.0
+08_Production_cell,8675,3,335,3623,4691,10,67983.0
+13_adas,5388,4,591,35,4732,11,1.3333626e7
+13_adas2,5335,5,504,34,4767,25,4706.0
+14_LockIII,12918,304,4058,3793,4700,34,7650335.0
+15_FESTO,9950,19,4472,538,4865,38,256497.0
+16_Container_terminal,116837,5,61808,50315,4647,13,1.25763340116291251e18

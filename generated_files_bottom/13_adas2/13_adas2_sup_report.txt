@@ -1,0 +1,76 @@
+Reading CIF file "Benchmark/13_adas2.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 2.
+Syntesizing supervisor 3.
+Syntesizing supervisor 4.
+Syntesizing supervisor 5.
+Syntesizing supervisor 7.
+Syntesizing supervisor 8.
+Syntesizing supervisor 9.
+Syntesizing supervisor 10.
+Syntesizing supervisor 11.
+Syntesizing supervisor 12.
+Syntesizing supervisor 13.
+Syntesizing supervisor 14.
+Syntesizing supervisor 15.
+Syntesizing supervisor 16.
+Syntesizing supervisor 17.
+Syntesizing supervisor 19.
+Syntesizing supervisor 20.
+Syntesizing supervisor 21.
+Syntesizing supervisor 22.
+Syntesizing supervisor 24.
+Syntesizing supervisor 25.
+Syntesizing supervisor 26.
+Syntesizing supervisor 29.
+Syntesizing supervisor 30.
+Syntesizing supervisor 33.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  ---------
+Total time                   18,849 ms
+  Read input model               13 ms
+  Preprocess input model          3 ms
+  Create matrix                   6 ms
+  Clustering in Matlab       17,902 ms
+  Import clustering results       1 ms
+  Synthesize supervisors        882 ms
+  Nonconflicting check           36 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                      1,920 states
+2                        192 states
+3                          6 states
+4                          6 states
+5                          4 states
+6                        192 states
+7                        120 states
+8                         80 states
+9                          4 states
+10                         4 states
+11                     1,280 states
+12                       120 states
+13                        80 states
+14                        15 states
+15                         4 states
+16                       120 states
+17                        40 states
+18                       160 states
+19                        15 states
+20                         8 states
+21                       160 states
+22                         4 states
+23                         8 states
+24                         4 states
+25                       160 states
+Total states           4,706 states

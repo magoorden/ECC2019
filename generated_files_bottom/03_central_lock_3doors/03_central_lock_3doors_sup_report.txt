@@ -1,0 +1,53 @@
+Reading CIF file "Benchmark/03_central_lock_3doors.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 2.
+Syntesizing supervisor 12.
+Syntesizing supervisor 13.
+Syntesizing supervisor 14.
+Syntesizing supervisor 27.
+Syntesizing supervisor 37.
+Syntesizing supervisor 38.
+Syntesizing supervisor 39.
+Syntesizing supervisor 41.
+Syntesizing supervisor 55.
+Syntesizing supervisor 57.
+Syntesizing supervisor 82.
+Syntesizing supervisor 91.
+Syntesizing supervisor 95.
+Synthesis of supervisors is finished.
+
+Timing measurement           Duration
+---------------------------  ---------
+Total time                   27,190 ms
+  Read input model               29 ms
+  Preprocess input model         14 ms
+  Create matrix                  10 ms
+  Clustering in Matlab       21,145 ms
+  Import clustering results       1 ms
+  Synthesize supervisors      5,965 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                         18 states
+2                        960 states
+3                         18 states
+4                         82 states
+5                          2 states
+6                          2 states
+7                        850 states
+8                         34 states
+9                         39 states
+10                         4 states
+11                        34 states
+12                        23 states
+13                         5 states
+14                         8 states
+15                        29 states
+Total states           2,108 states

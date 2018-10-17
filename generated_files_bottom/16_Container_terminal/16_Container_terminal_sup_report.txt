@@ -1,0 +1,52 @@
+Reading CIF file "Benchmark/16_Container_terminal.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 2.
+Syntesizing supervisor 3.
+Syntesizing supervisor 5.
+Syntesizing supervisor 8.
+Syntesizing supervisor 9.
+Syntesizing supervisor 10.
+Syntesizing supervisor 12.
+Syntesizing supervisor 13.
+Syntesizing supervisor 14.
+Syntesizing supervisor 16.
+Syntesizing supervisor 17.
+Syntesizing supervisor 18.
+Syntesizing supervisor 20.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  ----------
+Total time                   126,841 ms
+  Read input model                44 ms
+  Preprocess input model          19 ms
+  Create matrix                    9 ms
+  Clustering in Matlab        16,964 ms
+  Import clustering results        1 ms
+  Synthesize supervisors      60,768 ms
+  Nonconflicting check        49,026 ms
+
+Controlled system  State space size
+-----------------  --------------------------------
+1                     36,707,470,719,290,280 states
+2                    444,568,256,489,182,340 states
+3                     23,716,211,226,332,520 states
+4                    136,408,224,676,056,480 states
+5                     30,903,484,526,106,360 states
+6                     83,767,211,451,490,560 states
+7                    136,071,778,600,321,200 states
+8                     30,895,725,234,486,840 states
+9                     83,813,767,201,207,680 states
+10                   136,071,778,600,321,200 states
+11                    30,895,725,234,486,840 states
+12                    83,813,767,201,207,680 states
+13                                 2,422,560 states
+Total states       1,257,633,401,162,912,510 states
