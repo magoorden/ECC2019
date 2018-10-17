@@ -1,0 +1,337 @@
+uncontrollable S1_LampEntering_c_green;
+uncontrollable S1_LampEntering_c_red;
+uncontrollable S1_LampLeaving_c_green;
+uncontrollable S1_LampLeaving_c_red;
+uncontrollable S1_Door_Acc_c_on_open;
+uncontrollable S1_Door_Acc_c_off_open;
+uncontrollable S1_Door_Acc_c_on_close;
+uncontrollable S1_Door_Acc_c_off_close;
+uncontrollable S1_Sewer_Acc_c_open;
+uncontrollable S1_Sewer_Acc_c_close;
+uncontrollable S1_Door_Sensor_u_on_open;
+uncontrollable S1_Door_Sensor_u_off_open;
+uncontrollable S1_Door_Sensor_u_on_closed;
+uncontrollable S1_Door_Sensor_u_off_closed;
+uncontrollable S1_Sewer_Sensor_u_on;
+uncontrollable S1_Sewer_Sensor_u_off;
+uncontrollable S1_EqualWater_u_on;
+uncontrollable S1_EqualWater_u_off;
+uncontrollable S2_LampEntering_c_green;
+uncontrollable S2_LampEntering_c_red;
+uncontrollable S2_LampLeaving_c_green;
+uncontrollable S2_LampLeaving_c_red;
+uncontrollable S2_Door_Acc_c_on_open;
+uncontrollable S2_Door_Acc_c_off_open;
+uncontrollable S2_Door_Acc_c_on_close;
+uncontrollable S2_Door_Acc_c_off_close;
+uncontrollable S2_Sewer_Acc_c_open;
+uncontrollable S2_Sewer_Acc_c_close;
+uncontrollable S2_Door_Sensor_u_on_open;
+uncontrollable S2_Door_Sensor_u_off_open;
+uncontrollable S2_Door_Sensor_u_on_closed;
+uncontrollable S2_Door_Sensor_u_off_closed;
+uncontrollable S2_Sewer_Sensor_u_on;
+uncontrollable S2_Sewer_Sensor_u_off;
+uncontrollable S2_EqualWater_u_on;
+uncontrollable S2_EqualWater_u_off;
+uncontrollable EmergencyStop_u_pushed;
+uncontrollable EmergencyStop_u_released;
+plant automaton S1_LampEntering:
+  location Red:
+    initial;
+    marked;
+    edge S1_LampEntering_c_green goto Green;
+  location Green:
+    edge S1_LampEntering_c_red goto Red;
+end
+plant automaton S1_LampLeaving:
+  location Red:
+    initial;
+    marked;
+    edge S1_LampLeaving_c_green goto Green;
+  location Green:
+    edge S1_LampLeaving_c_red goto Red;
+end
+plant automaton S1_Door_Acc:
+  location Rest:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_on_open goto Opening;
+    edge S1_Door_Acc_c_on_close goto Closing;
+  location Opening:
+    edge S1_Door_Acc_c_off_open goto Rest;
+    edge S1_Door_Sensor_u_off_closed, S1_Door_Sensor_u_on_open;
+  location Closing:
+    edge S1_Door_Acc_c_off_close goto Rest;
+    edge S1_Door_Sensor_u_off_open, S1_Door_Sensor_u_on_closed;
+end
+plant automaton S1_Sewer_Acc:
+  location Close:
+    initial;
+    marked;
+    edge S1_Sewer_Acc_c_open goto Open;
+    edge S1_Sewer_Sensor_u_off;
+  location Open:
+    edge S1_Sewer_Acc_c_close goto Close;
+    edge S1_Sewer_Sensor_u_on;
+end
+plant automaton S1_Door_Sensor:
+  location Closed:
+    initial;
+    marked;
+    edge S1_Door_Sensor_u_off_closed goto Midle;
+  location Midle:
+    edge S1_Door_Sensor_u_on_closed goto Closed;
+    edge S1_Door_Sensor_u_on_open goto Open;
+  location Open:
+    edge S1_Door_Sensor_u_off_open goto Midle;
+end
+plant automaton S1_Sewer_Sensor:
+  location Off:
+    initial;
+    marked;
+    edge S1_Sewer_Sensor_u_on goto On;
+  location On:
+    edge S1_Sewer_Sensor_u_off goto Off;
+end
+plant automaton S1_EqualWater:
+  location Off:
+    initial;
+    marked;
+    edge S1_EqualWater_u_on goto On;
+  location On:
+    edge S1_EqualWater_u_off goto Off;
+end
+plant automaton S2_LampEntering:
+  location Red:
+    initial;
+    marked;
+    edge S2_LampEntering_c_green goto Green;
+  location Green:
+    edge S2_LampEntering_c_red goto Red;
+end
+plant automaton S2_LampLeaving:
+  location Red:
+    initial;
+    marked;
+    edge S2_LampLeaving_c_green goto Green;
+  location Green:
+    edge S2_LampLeaving_c_red goto Red;
+end
+plant automaton S2_Door_Acc:
+  location Rest:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_on_open goto Opening;
+    edge S2_Door_Acc_c_on_close goto Closing;
+  location Opening:
+    edge S2_Door_Acc_c_off_open goto Rest;
+    edge S2_Door_Sensor_u_off_closed, S2_Door_Sensor_u_on_open;
+  location Closing:
+    edge S2_Door_Acc_c_off_close goto Rest;
+    edge S2_Door_Sensor_u_off_open, S2_Door_Sensor_u_on_closed;
+end
+plant automaton S2_Sewer_Acc:
+  location Close:
+    initial;
+    marked;
+    edge S2_Sewer_Acc_c_open goto Open;
+    edge S2_Sewer_Sensor_u_off;
+  location Open:
+    edge S2_Sewer_Acc_c_close goto Close;
+    edge S2_Sewer_Sensor_u_on;
+end
+plant automaton S2_Door_Sensor:
+  location Closed:
+    initial;
+    marked;
+    edge S2_Door_Sensor_u_off_closed goto Midle;
+  location Midle:
+    edge S2_Door_Sensor_u_on_closed goto Closed;
+    edge S2_Door_Sensor_u_on_open goto Open;
+  location Open:
+    edge S2_Door_Sensor_u_off_open goto Midle;
+end
+plant automaton S2_Sewer_Sensor:
+  location Off:
+    initial;
+    marked;
+    edge S2_Sewer_Sensor_u_on goto On;
+  location On:
+    edge S2_Sewer_Sensor_u_off goto Off;
+end
+plant automaton S2_EqualWater:
+  location Off:
+    initial;
+    marked;
+    edge S2_EqualWater_u_on goto On;
+  location On:
+    edge S2_EqualWater_u_off goto Off;
+end
+plant automaton EmergencyStop:
+  location released:
+    initial;
+    marked;
+    edge EmergencyStop_u_pushed goto pushed;
+  location pushed:
+    edge EmergencyStop_u_released goto released;
+end
+plant automaton sup2:
+  alphabet S1_LampEntering_c_green, S1_LampEntering_c_red, S1_LampLeaving_c_green, S1_LampLeaving_c_red;
+  location:
+    initial;
+    marked;
+    edge S1_LampEntering_c_green when true;
+    edge S1_LampEntering_c_red when true;
+    edge S1_LampLeaving_c_green when true;
+    edge S1_LampLeaving_c_red when true;
+end
+plant automaton sup3:
+  alphabet S1_LampEntering_c_green, S1_LampEntering_c_red, S1_Door_Acc_c_on_open, S1_Door_Acc_c_on_close, S1_Door_Acc_c_off_open, S1_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_off_close when true;
+    edge S1_Door_Acc_c_off_open when true;
+    edge S1_Door_Acc_c_on_close when true;
+    edge S1_Door_Acc_c_on_open when true;
+    edge S1_LampEntering_c_green when true;
+    edge S1_LampEntering_c_red when true;
+end
+plant automaton sup4:
+  alphabet S1_LampLeaving_c_green, S1_LampLeaving_c_red, S1_Door_Acc_c_on_open, S1_Door_Acc_c_on_close, S1_Door_Acc_c_off_open, S1_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_off_close when true;
+    edge S1_Door_Acc_c_off_open when true;
+    edge S1_Door_Acc_c_on_close when true;
+    edge S1_Door_Acc_c_on_open when true;
+    edge S1_LampLeaving_c_green when true;
+    edge S1_LampLeaving_c_red when true;
+end
+plant automaton sup5:
+  alphabet S1_Door_Acc_c_on_open, S1_Door_Acc_c_on_close, S1_Door_Acc_c_off_open, S1_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_off_close when true;
+    edge S1_Door_Acc_c_off_open when true;
+    edge S1_Door_Acc_c_on_close when true;
+    edge S1_Door_Acc_c_on_open when true;
+end
+plant automaton sup6:
+  alphabet S2_LampEntering_c_green, S2_LampEntering_c_red, S2_LampLeaving_c_green, S2_LampLeaving_c_red;
+  location:
+    initial;
+    marked;
+    edge S2_LampEntering_c_green when true;
+    edge S2_LampEntering_c_red when true;
+    edge S2_LampLeaving_c_green when true;
+    edge S2_LampLeaving_c_red when true;
+end
+plant automaton sup7:
+  alphabet S2_LampEntering_c_green, S2_LampEntering_c_red, S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+    edge S2_LampEntering_c_green when true;
+    edge S2_LampEntering_c_red when true;
+end
+plant automaton sup8:
+  alphabet S2_LampLeaving_c_green, S2_LampLeaving_c_red, S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+    edge S2_LampLeaving_c_green when true;
+    edge S2_LampLeaving_c_red when true;
+end
+plant automaton sup9:
+  alphabet S1_Sewer_Acc_c_open, S1_Sewer_Acc_c_close, S2_Sewer_Acc_c_open, S2_Sewer_Acc_c_close;
+  location:
+    initial;
+    marked;
+    edge S1_Sewer_Acc_c_close when true;
+    edge S1_Sewer_Acc_c_open when true;
+    edge S2_Sewer_Acc_c_close when true;
+    edge S2_Sewer_Acc_c_open when true;
+end
+plant automaton sup10:
+  alphabet S1_Sewer_Acc_c_open, S1_Sewer_Acc_c_close, S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S1_Sewer_Acc_c_close when true;
+    edge S1_Sewer_Acc_c_open when true;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+end
+plant automaton sup11:
+  alphabet S1_Door_Acc_c_on_open, S1_Door_Acc_c_on_close, S1_Door_Acc_c_off_open, S1_Door_Acc_c_off_close, S2_Sewer_Acc_c_open, S2_Sewer_Acc_c_close;
+  location:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_off_close when true;
+    edge S1_Door_Acc_c_off_open when true;
+    edge S1_Door_Acc_c_on_close when true;
+    edge S1_Door_Acc_c_on_open when true;
+    edge S2_Sewer_Acc_c_close when true;
+    edge S2_Sewer_Acc_c_open when true;
+end
+plant automaton sup12:
+  alphabet S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+end
+plant automaton sup13:
+  alphabet S1_Door_Acc_c_on_open, S1_Door_Acc_c_on_close, S1_Door_Acc_c_off_open, S1_Door_Acc_c_off_close, S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S1_Door_Acc_c_off_close when true;
+    edge S1_Door_Acc_c_off_open when true;
+    edge S1_Door_Acc_c_on_close when true;
+    edge S1_Door_Acc_c_on_open when true;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+end
+plant automaton RequirementStateEvtExcls:
+  location:
+    initial;
+    marked;
+    edge S2_Sewer_Acc_c_open when not(S1_Sewer_Sensor.On or S1_Sewer_Acc.Open), not(not S1_Door_Sensor.Closed or S1_Door_Acc.Opening), not EmergencyStop.pushed;
+    edge S1_Door_Acc_c_on_open when not S1_EqualWater.Off, not not S1_LampEntering.Red, not not S1_LampLeaving.Red, not(S2_Sewer_Sensor.On or S2_Sewer_Acc.Open), not(not S2_Door_Sensor.Closed or S2_Door_Acc.Opening), not EmergencyStop.pushed;
+    edge S2_Door_Acc_c_on_open when not(S1_Sewer_Sensor.On or S1_Sewer_Acc.Open), not(not S1_Door_Sensor.Closed or S1_Door_Acc.Opening), not S2_EqualWater.Off, not not S2_LampEntering.Red, not not S2_LampLeaving.Red, not EmergencyStop.pushed;
+    edge S1_LampEntering_c_green when not S1_LampLeaving.Green, not not S1_Door_Sensor.Open, not not S1_Door_Acc.Rest, not EmergencyStop.pushed;
+    edge S1_Door_Acc_c_on_close when not not S1_LampEntering.Red, not not S1_LampLeaving.Red, not EmergencyStop.pushed;
+    edge S1_LampLeaving_c_green when not S1_LampEntering.Green, not not S1_Door_Sensor.Open, not not S1_Door_Acc.Rest, not EmergencyStop.pushed;
+    edge S1_Sewer_Acc_c_open when not(S2_Sewer_Sensor.On or S2_Sewer_Acc.Open), not(not S2_Door_Sensor.Closed or S2_Door_Acc.Opening), not EmergencyStop.pushed;
+    edge S2_LampEntering_c_green when not S2_LampLeaving.Green, not not S2_Door_Sensor.Open, not not S2_Door_Acc.Rest, not EmergencyStop.pushed;
+    edge S2_Door_Acc_c_on_close when not not S2_LampEntering.Red, not not S2_LampLeaving.Red, not EmergencyStop.pushed;
+    edge S2_LampLeaving_c_green when not S2_LampEntering.Green, not not S2_Door_Sensor.Open, not not S2_Door_Acc.Rest, not EmergencyStop.pushed;
+    edge S1_Sewer_Acc_c_close when not EmergencyStop.pushed;
+    edge S2_Sewer_Acc_c_close when not EmergencyStop.pushed;
+end
+supervisor automaton ncsup:
+  alphabet;
+  location:
+    initial;
+    marked;
+end

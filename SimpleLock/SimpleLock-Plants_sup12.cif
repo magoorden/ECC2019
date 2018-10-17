@@ -1,0 +1,81 @@
+controllable S1_LampEntering_c_green;
+controllable S1_LampEntering_c_red;
+controllable S1_LampLeaving_c_green;
+controllable S1_LampLeaving_c_red;
+controllable S1_Door_Acc_c_on_open;
+controllable S1_Door_Acc_c_off_open;
+controllable S1_Door_Acc_c_on_close;
+controllable S1_Door_Acc_c_off_close;
+controllable S1_Sewer_Acc_c_open;
+controllable S1_Sewer_Acc_c_close;
+uncontrollable S1_Door_Sensor_u_on_open;
+uncontrollable S1_Door_Sensor_u_off_open;
+uncontrollable S1_Door_Sensor_u_on_closed;
+uncontrollable S1_Door_Sensor_u_off_closed;
+uncontrollable S1_Sewer_Sensor_u_on;
+uncontrollable S1_Sewer_Sensor_u_off;
+uncontrollable S1_EqualWater_u_on;
+uncontrollable S1_EqualWater_u_off;
+controllable S2_LampEntering_c_green;
+controllable S2_LampEntering_c_red;
+controllable S2_LampLeaving_c_green;
+controllable S2_LampLeaving_c_red;
+controllable S2_Door_Acc_c_on_open;
+controllable S2_Door_Acc_c_off_open;
+controllable S2_Door_Acc_c_on_close;
+controllable S2_Door_Acc_c_off_close;
+controllable S2_Sewer_Acc_c_open;
+controllable S2_Sewer_Acc_c_close;
+uncontrollable S2_Door_Sensor_u_on_open;
+uncontrollable S2_Door_Sensor_u_off_open;
+uncontrollable S2_Door_Sensor_u_on_closed;
+uncontrollable S2_Door_Sensor_u_off_closed;
+uncontrollable S2_Sewer_Sensor_u_on;
+uncontrollable S2_Sewer_Sensor_u_off;
+uncontrollable S2_EqualWater_u_on;
+uncontrollable S2_EqualWater_u_off;
+uncontrollable EmergencyStop_u_pushed;
+uncontrollable EmergencyStop_u_released;
+plant automaton S2_Door_Acc:
+  location Rest:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_on_open goto Opening;
+    edge S2_Door_Acc_c_on_close goto Closing;
+  location Opening:
+    edge S2_Door_Acc_c_off_open goto Rest;
+    edge S2_Door_Sensor_u_off_closed, S2_Door_Sensor_u_on_open;
+  location Closing:
+    edge S2_Door_Acc_c_off_close goto Rest;
+    edge S2_Door_Sensor_u_off_open, S2_Door_Sensor_u_on_closed;
+end
+plant automaton S2_Door_Sensor:
+  location Closed:
+    initial;
+    marked;
+    edge S2_Door_Sensor_u_off_closed goto Midle;
+  location Midle:
+    edge S2_Door_Sensor_u_on_closed goto Closed;
+    edge S2_Door_Sensor_u_on_open goto Open;
+  location Open:
+    edge S2_Door_Sensor_u_off_open goto Midle;
+end
+plant automaton S2_EqualWater:
+  location Off:
+    initial;
+    marked;
+    edge S2_EqualWater_u_on goto On;
+  location On:
+    edge S2_EqualWater_u_off goto Off;
+end
+supervisor automaton sup12:
+  alphabet S2_Door_Acc_c_on_open, S2_Door_Acc_c_on_close, S2_Door_Acc_c_off_open, S2_Door_Acc_c_off_close;
+  location:
+    initial;
+    marked;
+    edge S2_Door_Acc_c_off_close when true;
+    edge S2_Door_Acc_c_off_open when true;
+    edge S2_Door_Acc_c_on_close when true;
+    edge S2_Door_Acc_c_on_open when true;
+end
+requirement invariant S2_EqualWater.Off disables S2_Door_Acc_c_on_open;

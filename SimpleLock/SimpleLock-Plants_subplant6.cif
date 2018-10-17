@@ -1,0 +1,46 @@
+controllable S1_LampEntering_c_green;
+controllable S1_LampEntering_c_red;
+controllable S1_LampLeaving_c_green;
+controllable S1_LampLeaving_c_red;
+controllable S1_Door_Acc_c_on_open;
+controllable S1_Door_Acc_c_off_open;
+controllable S1_Door_Acc_c_on_close;
+controllable S1_Door_Acc_c_off_close;
+controllable S1_Sewer_Acc_c_open;
+controllable S1_Sewer_Acc_c_close;
+uncontrollable S1_Door_Sensor_u_on_open;
+uncontrollable S1_Door_Sensor_u_off_open;
+uncontrollable S1_Door_Sensor_u_on_closed;
+uncontrollable S1_Door_Sensor_u_off_closed;
+uncontrollable S1_Sewer_Sensor_u_on;
+uncontrollable S1_Sewer_Sensor_u_off;
+uncontrollable S1_EqualWater_u_on;
+uncontrollable S1_EqualWater_u_off;
+controllable S2_LampEntering_c_green;
+controllable S2_LampEntering_c_red;
+controllable S2_LampLeaving_c_green;
+controllable S2_LampLeaving_c_red;
+controllable S2_Door_Acc_c_on_open;
+controllable S2_Door_Acc_c_off_open;
+controllable S2_Door_Acc_c_on_close;
+controllable S2_Door_Acc_c_off_close;
+controllable S2_Sewer_Acc_c_open;
+controllable S2_Sewer_Acc_c_close;
+uncontrollable S2_Door_Sensor_u_on_open;
+uncontrollable S2_Door_Sensor_u_off_open;
+uncontrollable S2_Door_Sensor_u_on_closed;
+uncontrollable S2_Door_Sensor_u_off_closed;
+uncontrollable S2_Sewer_Sensor_u_on;
+uncontrollable S2_Sewer_Sensor_u_off;
+uncontrollable S2_EqualWater_u_on;
+uncontrollable S2_EqualWater_u_off;
+uncontrollable EmergencyStop_u_pushed;
+uncontrollable EmergencyStop_u_released;
+plant automaton S1_EqualWater:
+  location Off:
+    initial;
+    marked;
+    edge S1_EqualWater_u_on goto On;
+  location On:
+    edge S1_EqualWater_u_off goto Off;
+end
